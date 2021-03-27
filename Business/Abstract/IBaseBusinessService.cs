@@ -6,5 +6,6 @@ namespace Business.Abstract
 {
    public interface IBaseBusinessService<T>
     {
+
     }
 }
