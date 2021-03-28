@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CORE.Entities.Concrete
+namespace Entity.Concrete
 {
-    public class OperationClaim : IEntity
+    public class Post:IEntity
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int UniId { get; set; }
+        public string UniPost { get; set; }
     }
 }

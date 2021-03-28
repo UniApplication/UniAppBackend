@@ -5,9 +5,10 @@ using System.Text;
 
 namespace Entity.Concrete
 {
-    public class City:IEntity
+    public class UnivercityImage:IEntity
     {
         public int Id { get; set; }
-        public string CityName { get; set; }
+        public int UnivercityId { get; set; }
+        public string ImagePath { get; set; }
     }
 }

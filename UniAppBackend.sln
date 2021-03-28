@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{33601369-43B5-463F-9ED6-12C0B91B5D5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{8A3D4192-AC50-43CE-8B1D-FAB23777C4FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entity", "Entities\Entity.csproj", "{8A3D4192-AC50-43CE-8B1D-FAB23777C4FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{6B43C6FC-2195-4BCF-9B1A-A0138696AAD2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Business.csproj", "{3BFE5BD0-17C8-4C59-91ED-8EB437DE013E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{5DE6DC3E-4B89-46DE-9F09-DBB9E4ECD397}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{5DE6DC3E-4B89-46DE-9F09-DBB9E4ECD397}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
