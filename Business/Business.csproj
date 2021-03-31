@@ -5,11 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="BusinessAspects\Autofac\" />
-    <Folder Include="Concrete\" />
-    <Folder Include="Constants\" />
-    <Folder Include="DependencyResolvers\Autofac\" />
-    <Folder Include="ValidationRules\FluentValidation\" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\Entities\Entity.csproj" />
   </ItemGroup>
 
 </Project>
