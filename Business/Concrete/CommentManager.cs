@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using CORE.Utilities;
+using DataAccess.Abstract;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,29 +11,38 @@ namespace Business.Concrete
 {
     public class CommentManager : ICommentService
     {
+        ICommentDal _commentDal;
+        public CommentManager(ICommentDal commentDal)
+        {
+            _commentDal = commentDal;
+        }
         public IResult Add(Comment entity)
         {
-            throw new NotImplementedException();
+            _commentDal.Add(entity);
+            return new SuccessResult(Messages.CommentAdded);
         }
 
         public IResult Delete(Comment entity)
         {
-            throw new NotImplementedException();
+            _commentDal.Delete(entity);
+            return new SuccessResult(Messages.CommentDeleted);
         }
 
         public IDataResult<List<Comment>> GetAll()
         {
-            throw new NotImplementedException();
+
+            return new SuccessDataResult<List<Comment>>(_commentDal.GetAll(),Messages.CommentsListed);
         }
 
         public IDataResult<Comment> GetById(int Id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Comment>(_commentDal.Get(c=>c.Id==Id),Messages.CommentGetted);
         }
 
         public IResult Update(Comment entity)
         {
-            throw new NotImplementedException();
+            _commentDal.Update(entity);
+            return new SuccessResult(Messages.CommentUpdated);
         }
     }
 }

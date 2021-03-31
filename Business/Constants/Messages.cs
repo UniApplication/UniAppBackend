@@ -12,15 +12,19 @@ namespace Business.Constants
         public static string NewUserErrorPassword = "Yeni kullanıcı oluşturulamadı.Şifreyi 6 kakaretden uzun tutun lütfen...";
 
         public static string UserNotFound = "Kullanıcı Bulunamadı";
-
         public static string PasswordError = "Şifre Hatalı";
-
         public static string SuccesfulLogin = "Sisteme Giriş başarılı";
-
         public static string UserAlreadyExists = "Bu kullanıcı zaten Mevcut";
-
         public static string UserRegistered = "Kullanıcı Başarıyla Kaydedildi";
-
         public static string AccessTokenCreated = "Token Oluşturuldu";
+
+        public static string CitiesListed = "Şehirler Listelendi";
+        public static string CityListed = "Şehir Getirildi";
+
+        public static string CommentAdded = "Yorum Eklendi";
+        public static string CommentDeleted = "Yorum Silindi";
+        public static string CommentsListed = "Yorumlar Listelendi";
+        public static string CommentGetted = "Yorum Getirildi";
+        public static string CommentUpdated = "Yorum Düzenlendi";
     }
 }
