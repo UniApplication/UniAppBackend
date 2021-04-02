@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using CORE.Utilities;
+using DataAccess.Abstract;
 using Entity.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,29 +11,37 @@ namespace Business.Concrete
 {
     public class PostManager : IPostService
     {
+        IPostDal _postDal;
+        public PostManager(IPostDal postDal)
+        {
+            _postDal = postDal;
+        }
         public IResult Add(Post entity)
         {
-            throw new NotImplementedException();
+            _postDal.Add(entity);
+            return new SuccessResult(Messages.Postadded);
         }
 
         public IResult Delete(Post entity)
         {
-            throw new NotImplementedException();
+            _postDal.Delete(entity);
+            return new SuccessResult(Messages.PostDeleted);
         }
 
         public IDataResult<List<Post>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Post>>(_postDal.GetAll(), Messages.PostsListed);
         }
 
         public IDataResult<Post> GetById(int Id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Post>(_postDal.Get(p=>p.Id==Id), Messages.PostGot);
         }
 
         public IResult Update(Post entity)
         {
-            throw new NotImplementedException();
+            _postDal.Update(entity);
+            return new SuccessResult(Messages.PostUpdated);
         }
     }
 }

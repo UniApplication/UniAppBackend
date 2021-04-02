@@ -11,18 +11,17 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class UserFollowsController : ControllerBase
     {
-        ICityService _cityService;
-        public CitiesController(ICityService cityService)
+        IUserFollowService _userfollowService;
+        public UserFollowsController(IUserFollowService userFollowService)
         {
-            _cityService = cityService;
+            _userfollowService = userFollowService;
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _cityService.GetAll();
+            var result = _userfollowService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,7 +31,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
-            var result = _cityService.GetById(Id);
+            var result = _userfollowService.GetById(Id);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +39,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("add")]
-        public IActionResult Add(City city)
+        public IActionResult Add(UserFollow userFollow)
         {
-            var result = _cityService.Add(city);
+            var result = _userfollowService.Add(userFollow);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +49,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("update")]
-        public IActionResult Update(City city)
+        public IActionResult Update(UserFollow userFollow)
         {
-            var result = _cityService.Update(city);
+            var result = _userfollowService.Update(userFollow);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +59,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("delete")]
-        public IActionResult Delete(City city)
+        public IActionResult Delete(UserFollow userFollow)
         {
-            var result = _cityService.Delete(city);
+            var result = _userfollowService.Delete(userFollow);
             if (result.Success)
             {
                 return Ok(result);

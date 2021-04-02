@@ -11,18 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class CommentsController : ControllerBase
     {
-        ICityService _cityService;
-        public CitiesController(ICityService cityService)
+        ICommentService _commentService;
+        public CommentsController(ICommentService commentService)
         {
-            _cityService = cityService;
+            _commentService = commentService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _cityService.GetAll();
+            var result = _commentService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
-            var result = _cityService.GetById(Id);
+            var result = _commentService.GetById(Id);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +40,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("add")]
-        public IActionResult Add(City city)
+        public IActionResult Add(Comment comment)
         {
-            var result = _cityService.Add(city);
+            var result = _commentService.Add(comment);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +50,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("update")]
-        public IActionResult Update(City city)
+        public IActionResult Update(Comment comment)
         {
-            var result = _cityService.Update(city);
+            var result = _commentService.Update(comment);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +60,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("delete")]
-        public IActionResult Delete(City city)
+        public IActionResult Delete(Comment comment)
         {
-            var result = _cityService.Delete(city);
+            var result = _commentService.Delete(comment);
             if (result.Success)
             {
                 return Ok(result);

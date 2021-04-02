@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using CORE.Entities.Concrete;
 using CORE.Utilities;
 using DataAccess.Abstract;
@@ -32,7 +33,7 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(userDal.GetAll(), "Tüm kullanıcılar listelendi");
+            return new SuccessDataResult<List<User>>(userDal.GetAll(), Messages.UsersGetted);
         }
 
         public User GetByEmail(string email)
@@ -42,17 +43,12 @@ namespace Business.Concrete
 
         public IDataResult<User> GetById(int Id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<User>(userDal.Get(u => u.Id == Id), Messages.UserGot);
         }
 
         public IDataResult<List<OperationClaim>> GetClaim(User user)
         {
             return new SuccessDataResult<List<OperationClaim>>(userDal.GetClaims(user));
-        }
-
-        public IDataResult<List<User>> GetDataPhotoId(int Id)
-        {
-            throw new NotImplementedException();
         }
 
         public IResult Update(User entity)

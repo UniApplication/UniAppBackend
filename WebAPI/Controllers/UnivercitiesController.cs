@@ -11,18 +11,17 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class UnivercitiesController : ControllerBase
     {
-        ICityService _cityService;
-        public CitiesController(ICityService cityService)
+        IUnivercityService _univercityService;
+        public UnivercitiesController(IUnivercityService univercityService)
         {
-            _cityService = cityService;
+            _univercityService = univercityService;
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _cityService.GetAll();
+            var result = _univercityService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,7 +31,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
-            var result = _cityService.GetById(Id);
+            var result = _univercityService.GetById(Id);
             if (result.Success)
             {
                 return Ok(result);
@@ -40,9 +39,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("add")]
-        public IActionResult Add(City city)
+        public IActionResult Add(Univercity univercity)
         {
-            var result = _cityService.Add(city);
+            var result = _univercityService.Add(univercity);
             if (result.Success)
             {
                 return Ok(result);
@@ -50,9 +49,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("update")]
-        public IActionResult Update(City city)
+        public IActionResult Update(Univercity univercity)
         {
-            var result = _cityService.Update(city);
+            var result = _univercityService.Update(univercity);
             if (result.Success)
             {
                 return Ok(result);
@@ -60,9 +59,9 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
         [HttpGet("delete")]
-        public IActionResult Delete(City city)
+        public IActionResult Delete(Univercity univercity)
         {
-            var result = _cityService.Delete(city);
+            var result = _univercityService.Delete(univercity);
             if (result.Success)
             {
                 return Ok(result);

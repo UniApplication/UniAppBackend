@@ -20,12 +20,14 @@ namespace Business.Concrete
         }
         public IResult Add(City entity)
         {
-            throw new NotImplementedException();
+            _cityDal.Add(entity);
+            return new SuccessResult(Messages.CityAdd);
         }
 
         public IResult Delete(City entity)
         {
-            throw new NotImplementedException();
+            _cityDal.Delete(entity);
+            return new SuccessResult(Messages.CityDeleted);
         }
 
         public IDataResult<List<City>> GetAll()
@@ -40,7 +42,8 @@ namespace Business.Concrete
 
         public IResult Update(City entity)
         {
-            throw new NotImplementedException();
+            _cityDal.Update(entity);
+            return new SuccessResult(Messages.CityUpdated);
         }
     }
 }

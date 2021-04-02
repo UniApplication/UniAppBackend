@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entity.Concrete;
+using CORE.Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,18 +11,17 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        ICityService _cityService;
-        public CitiesController(ICityService cityService)
+        IUserService _userService;
+        public UsersController(IUserService userService)
         {
-            _cityService = cityService;
+            _userService = userService;
         }
-
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _cityService.GetAll();
+            var result = _userService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -32,37 +31,37 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
-            var result = _cityService.GetById(Id);
+            var result = _userService.GetById(Id);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("add")]
-        public IActionResult Add(City city)
+        [HttpPost("add")]
+        public IActionResult Add(User user)
         {
-            var result = _cityService.Add(city);
+            var result = _userService.Add(user);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("update")]
-        public IActionResult Update(City city)
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
         {
-            var result = _cityService.Update(city);
+            var result = _userService.Delete(user);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("delete")]
-        public IActionResult Delete(City city)
+        [HttpPost("update")]
+        public IActionResult Update(User user)
         {
-            var result = _cityService.Delete(city);
+            var result = _userService.Update(user);
             if (result.Success)
             {
                 return Ok(result);
