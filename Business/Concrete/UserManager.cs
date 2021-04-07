@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using CORE.Aspects.Autofac.Validation;
 using CORE.Entities.Concrete;
 using CORE.Utilities;
 using DataAccess.Abstract;
@@ -17,6 +19,7 @@ namespace Business.Concrete
             userDal = _userDal;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User entity)
         {
 

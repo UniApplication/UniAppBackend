@@ -28,10 +28,30 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getalldetail")]
+        public IActionResult GetAllDetail()
+        {
+            var result = _univercityService.GetAllDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
             var result = _univercityService.GetById(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpGet("getbyiddetail")]
+        public IActionResult GetByIdDetail(int Id)
+        {
+            var result = _univercityService.GetUnivercityDetailById(Id);
             if (result.Success)
             {
                 return Ok(result);

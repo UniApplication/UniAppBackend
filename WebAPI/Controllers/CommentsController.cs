@@ -29,6 +29,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getbyunivercityid")]
+        public IActionResult GetByUnivercityId(int Id)
+        {
+            var result = _commentService.GetCommentByUnivercityId(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
@@ -39,7 +49,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("add")]
+        [HttpPost("add")]
         public IActionResult Add(Comment comment)
         {
             var result = _commentService.Add(comment);
@@ -49,7 +59,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("update")]
+        [HttpPost("update")]
         public IActionResult Update(Comment comment)
         {
             var result = _commentService.Update(comment);
@@ -59,7 +69,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(Comment comment)
         {
             var result = _commentService.Delete(comment);

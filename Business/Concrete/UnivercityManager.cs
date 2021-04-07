@@ -3,6 +3,7 @@ using Business.Constants;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -33,9 +34,19 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Univercity>>(_univercityDal.GetAll(), Messages.UnivercitysListed);
         }
 
+        public IDataResult<List<UnivercityDetailDto>> GetAllDetail()
+        {
+            return new SuccessDataResult<List<UnivercityDetailDto>>(_univercityDal.GetAllDetails(), Messages.UnivercityGetted);
+        }
+
         public IDataResult<Univercity> GetById(int Id)
         {
             return new SuccessDataResult<Univercity>(_univercityDal.Get(u=>u.Id==Id), Messages.UnivercityGetted);
+        }
+
+        public IDataResult<UnivercityDetailDto> GetUnivercityDetailById(int uniId)
+        {
+            return new SuccessDataResult<UnivercityDetailDto>(_univercityDal.GetDetailById(uniId), Messages.UnivercityGetted);
         }
 
         public IResult Update(Univercity entity)

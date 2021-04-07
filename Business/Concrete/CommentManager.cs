@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using CORE.Aspects.Autofac.Validation;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -16,6 +18,7 @@ namespace Business.Concrete
         {
             _commentDal = commentDal;
         }
+        [ValidationAspect(typeof(CommentValidator))]
         public IResult Add(Comment entity)
         {
             _commentDal.Add(entity);
@@ -38,6 +41,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Comment>(_commentDal.Get(c=>c.Id==Id),Messages.CommentGetted);
         }
+
+        public IDataResult<List<Comment>> GetCommentByUnivercityId(int univercityId)
+        {
+            return new SuccessDataResult<List<Comment>>(_commentDal.GetAll(c => c.UnivercityId == univercityId), Messages.CommentGetted);        }
 
         public IResult Update(Comment entity)
         {

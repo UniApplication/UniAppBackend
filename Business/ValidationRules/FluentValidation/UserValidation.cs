@@ -10,7 +10,8 @@ namespace Business.ValidationRules.FluentValidation
     {
         public UserValidator()
         {
-           
+            RuleFor(u => u.Email).EmailAddress();
+
         }
     }
 }

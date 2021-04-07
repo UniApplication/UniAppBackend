@@ -1,6 +1,10 @@
 ﻿using Business.Abstract;
 using CORE.Utilities;
+using CORE.Utilities.BusinessRules;
+using CORE.Utilities.FileHelper;
+using DataAccess.Abstract;
 using Entity.Concrete;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,30 +12,48 @@ using System.Text;
 namespace Business.Concrete
 {
     public class UnivercityImageManager : IUnivercityImageService
+
     {
-        public IResult Add(UnivercityImage entity)
-        {
-            throw new NotImplementedException();
-        }
 
-        public IResult Delete(UnivercityImage entity)
+        IUnivercityImageDal _univercityImageDal;
+        public UnivercityImageManager(IUnivercityImageDal univercityImageDal)
         {
-            throw new NotImplementedException();
+            _univercityImageDal = univercityImageDal;
         }
+        public IResult Add(IFormFile file,UnivercityImage univercityImage)
+        {
+                IResult result = BusinessRules.Run(CheckIfUnivercityHaveMoreThan1Images(univercityImage.UnivercityId));
 
+                if (result != null)
+                {
+                    return result;
+                }
+
+                univercityImage.ImagePath = Filehelper.AddAsync(file);
+                _univercityImageDal.Add(univercityImage);
+                return new SuccessResult();
+            
+
+        }
         public IDataResult<List<UnivercityImage>> GetAll()
         {
-            throw new NotImplementedException();
+
+            return new SuccessDataResult<List<UnivercityImage>>(_univercityImageDal.GetAll(), "Hepsi geldi");
+        }
+        public IDataResult<List<UnivercityImage>> GetByUnivercityId(int univercityId)
+        {
+            return new SuccessDataResult<List<UnivercityImage>>(_univercityImageDal.GetAll(p => p.UnivercityId==univercityId), "Unilerin Resimleri Getirildi");
         }
 
-        public IDataResult<UnivercityImage> GetById(int Id)
+        private IResult CheckIfUnivercityHaveMoreThan1Images(int image)
+         {
+        var result = _univercityImageDal.GetAll(p => p.UnivercityId== image).Count;
+        if (result > 1)
         {
-            throw new NotImplementedException();
+            return new ErrorResult();
         }
-
-        public IResult Update(UnivercityImage entity)
-        {
-            throw new NotImplementedException();
-        }
+        return new SuccessResult();
+         }
     }
+   
 }
