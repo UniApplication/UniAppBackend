@@ -19,7 +19,6 @@ namespace Business.Concrete
             userDal = _userDal;
         }
 
-        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User entity)
         {
 
