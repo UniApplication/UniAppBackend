@@ -38,6 +38,34 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+        public List<UnivercityDetailDto> GetDetailByCityId(int cityId)
+        {
+            using (UniAppContext univercityContext = new UniAppContext())
+            {
+                var result = from u in univercityContext.Univercities
+                             join c in univercityContext.Cities
+                             on
+                             u.CityId equals c.Id
+                             join i in univercityContext.univercityImages
+                             on
+                             u.Id equals i.UnivercityId
+                             where u.CityId==cityId
+                             select new UnivercityDetailDto
+                             {
+                                 UnivercityId = u.Id,
+                                 UnivercityName = u.UnivercityName,
+                                 UnivercityDescription = u.UnivercityDescription,
+                                 UnivercityRector = u.UnivercityRector,
+                                 CityName = c.CityName,
+                                 StarCount = u.StarCount,
+                                 UnivercityImage = i.ImagePath
+
+                             };
+
+
+                return result.ToList();
+            }
+        }
 
         public UnivercityDetailDto GetDetailById(int univercityId)
         {

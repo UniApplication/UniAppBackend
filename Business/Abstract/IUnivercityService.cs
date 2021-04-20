@@ -11,5 +11,6 @@ namespace Business.Abstract
     {
         IDataResult<List<UnivercityDetailDto>> GetAllDetail();
         IDataResult<UnivercityDetailDto> GetUnivercityDetailById(int uniId);
+        IDataResult<List<UnivercityDetailDto>> GetDetailByCity(int cityId);
     }
 }

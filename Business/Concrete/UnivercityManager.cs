@@ -44,6 +44,11 @@ namespace Business.Concrete
             return new SuccessDataResult<Univercity>(_univercityDal.Get(u=>u.Id==Id), Messages.UnivercityGetted);
         }
 
+        public IDataResult<List<UnivercityDetailDto>> GetDetailByCity(int cityId)
+        {
+            return new SuccessDataResult<List<UnivercityDetailDto>>(_univercityDal.GetDetailByCityId(cityId),Messages.UnivercitysListed);
+        }
+
         public IDataResult<UnivercityDetailDto> GetUnivercityDetailById(int uniId)
         {
             return new SuccessDataResult<UnivercityDetailDto>(_univercityDal.GetDetailById(uniId), Messages.UnivercityGetted);

@@ -11,5 +11,6 @@ namespace DataAccess.Abstract
     {
         List<UnivercityDetailDto> GetAllDetails();
         UnivercityDetailDto GetDetailById(int univercityId);
+        List<UnivercityDetailDto> GetDetailByCityId(int cityId);
     }
 }

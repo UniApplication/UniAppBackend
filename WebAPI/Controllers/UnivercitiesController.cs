@@ -38,6 +38,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getdetailbycityid")]
+        public IActionResult GetDetailByCityId(int Id)
+        {
+            var result = _univercityService.GetDetailByCity(Id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
