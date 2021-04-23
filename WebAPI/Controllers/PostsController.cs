@@ -28,6 +28,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getalldetail")]
+        public IActionResult GetAllDetail()
+        {
+            var result = _postService.GetAllDetail();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
@@ -38,7 +48,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("add")]
+        [HttpPost("add")]
         public IActionResult Add(Post post)
         {
             var result = _postService.Add(post);
@@ -48,7 +58,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("update")]
+        [HttpPost("update")]
         public IActionResult Update(Post post)
         {
             var result = _postService.Update(post);
@@ -58,7 +68,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(Post post)
         {
             var result = _postService.Delete(post);

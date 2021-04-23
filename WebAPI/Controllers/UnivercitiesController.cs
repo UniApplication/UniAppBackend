@@ -68,7 +68,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("add")]
+        [HttpPost("add")]
         public IActionResult Add(Univercity univercity)
         {
             var result = _univercityService.Add(univercity);
@@ -78,7 +78,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("update")]
+        [HttpPost("update")]
         public IActionResult Update(Univercity univercity)
         {
             var result = _univercityService.Update(univercity);
@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(Univercity univercity)
         {
             var result = _univercityService.Delete(univercity);

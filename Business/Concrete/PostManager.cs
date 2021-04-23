@@ -3,6 +3,7 @@ using Business.Constants;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -31,6 +32,11 @@ namespace Business.Concrete
         public IDataResult<List<Post>> GetAll()
         {
             return new SuccessDataResult<List<Post>>(_postDal.GetAll(), Messages.PostsListed);
+        }
+
+        public IDataResult<List<PostDetail>> GetAllDetail()
+        {
+            return new SuccessDataResult<List<PostDetail>>(_postDal.GetAllDetail(), Messages.PostsListed);
         }
 
         public IDataResult<Post> GetById(int Id)

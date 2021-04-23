@@ -28,7 +28,7 @@ namespace Business.Concrete
         {
             var claim = _userService.GetClaim(user);
             var accesToken = _tokenHelper.CreateToken(user, claim.Data);
-            return new SuccessDataResult<AccessToken>(accesToken, Messages.AccessTokenCreated); ;
+            return new SuccessDataResult<AccessToken>(accesToken, Messages.SuccesfulLogin); ;
         }
 
         [ValidationAspect(typeof(LoginValidator))]
