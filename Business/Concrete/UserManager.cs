@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using CORE.Aspects.Autofac.Validation;
@@ -33,6 +34,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [SecuredOperation("admin")]
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(userDal.GetAll(), Messages.UsersGetted);
@@ -48,9 +50,9 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userDal.Get(u => u.Id == Id), Messages.UserGot);
         }
 
-        public IDataResult<List<OperationClaim>> GetClaim(User user)
+        public IDataResult<List<OperationClaim>> GetClaim(int userId)
         {
-            return new SuccessDataResult<List<OperationClaim>>(userDal.GetClaims(user));
+            return new SuccessDataResult<List<OperationClaim>>(userDal.GetClaims(userId));
         }
 
         public IResult Update(User entity)

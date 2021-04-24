@@ -26,7 +26,7 @@ namespace Business.Concrete
         }
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            var claim = _userService.GetClaim(user);
+            var claim = _userService.GetClaim(user.Id);
             var accesToken = _tokenHelper.CreateToken(user, claim.Data);
             return new SuccessDataResult<AccessToken>(accesToken, Messages.SuccesfulLogin); ;
         }

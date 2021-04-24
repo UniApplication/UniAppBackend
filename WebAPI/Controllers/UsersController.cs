@@ -38,6 +38,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getclaims")]
+        public IActionResult GetClaims(int userId)
+        {
+            var result = _userService.GetClaim(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
