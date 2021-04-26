@@ -19,6 +19,10 @@ namespace Business.Constants
         public static string UserAlreadyExists = "Bu kullanıcı zaten Mevcut";
         public static string UserRegistered = "Kullanıcı Başarıyla Kaydedildi";
         public static string AccessTokenCreated = "Token Oluşturuldu";
+        public static string UserDeleted = "Kullanıcı Silindi";
+        public static string UserUpdated = "Kullanıcı Güncellendi";
+        public static string UserAdded = "Kullanıcı Eklendi";
+        public static string UserClaimUpdated = "Kullanıcı Yetkisi Güncellendi";
 
 
         public static string CommentAdded = "Yorum Eklendi";
@@ -56,5 +60,7 @@ namespace Business.Constants
         public static string UserFollowUpdated = "Takip Güncellendi";
         public static string UserFollowsListed = "Takip Edilenler Listelendi";
         public static string UserFollowGetted = "Takip Getirildi";
+
+       
     }
 }

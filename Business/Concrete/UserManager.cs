@@ -5,9 +5,11 @@ using Business.ValidationRules.FluentValidation;
 using CORE.Aspects.Autofac.Validation;
 using CORE.Entities.Concrete;
 using CORE.Utilities;
+using CORE.Utilities.BusinessRules;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -24,20 +26,25 @@ namespace Business.Concrete
         {
 
             userDal.Add(entity);
-            return new SuccessResult();
+            return new SuccessResult(Messages.UserAdded);
 
         }
 
         public IResult Delete(User entity)
         {
             userDal.Delete(entity);
-            return new SuccessResult();
+            return new SuccessResult(Messages.UserDeleted);
         }
 
         [SecuredOperation("admin")]
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(userDal.GetAll(), Messages.UsersGetted);
+        }
+
+        public IDataResult<List<OperationClaim>> GetAllClaims()
+        {
+            return new SuccessDataResult<List<OperationClaim>>(userDal.GetAllClaims(),"Tüm Yetkiler Getirildi");
         }
 
         public User GetByEmail(string email)
@@ -54,11 +61,36 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<OperationClaim>>(userDal.GetClaims(userId));
         }
+        [SecuredOperation("admin")]
+        public IResult PostClaim(UserOperationClaim user)
+        {
+            IResult result = BusinessRules.Run(IfUserAlreadyHaveClaim(user.Id));
+            if (result != null)
+            {
+                return result;
+            }
+            userDal.AddClaim(user);
+            return new SuccessResult(Messages.UserClaimUpdated);
+        }
 
         public IResult Update(User entity)
         {
             userDal.Update(entity);
-            return new SuccessResult();
+            return new SuccessResult(Messages.UserUpdated);
         }
+        private IResult IfUserAlreadyHaveClaim(int userId)
+        {
+            var result = GetClaim(userId).Data.Count;
+            if (result>3)
+            {
+                return new ErrorResult("Yetkiler üçten fazla olamaz");
+            }
+            else
+            {
+                return new SuccessResult();
+            }
+            
+        }
+       
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using CORE.Utilities;
 using DataAccess.Abstract;
@@ -17,12 +18,13 @@ namespace Business.Concrete
         {
             _univercityDal = univercityDal;
         }
+        [SecuredOperation("admin")]
         public IResult Add(Univercity entity)
         {
             _univercityDal.Add(entity);
             return new SuccessResult(Messages.Univercityadded);
         }
-
+        [SecuredOperation("admin")]
         public IResult Delete(Univercity entity)
         {
             _univercityDal.Delete(entity);
@@ -53,7 +55,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<UnivercityDetailDto>(_univercityDal.GetDetailById(uniId), Messages.UnivercityGetted);
         }
-
+        [SecuredOperation("admin")]
         public IResult Update(Univercity entity)
         {
             _univercityDal.Update(entity);

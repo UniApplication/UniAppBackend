@@ -16,6 +16,12 @@ namespace DataAccess.Concrete
         }
 
         public DbSet<Comment> Comments { get; set; }
+
+        internal void AttachTo(string v, Post post)
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<City> Cities { get; set; }
         public DbSet<Univercity> Univercities { get; set; }
         public DbSet<Department> Departments { get; set; }

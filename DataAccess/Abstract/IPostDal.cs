@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
    public interface IPostDal: IEntityRepository<Post>
     {
         List<PostDetail> GetAllDetail();
+     
     }
 }

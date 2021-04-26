@@ -6,11 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfPostDal : EfEntityRepositoryBase<Post, UniAppContext>, IPostDal
     {
+      
+
         public List<PostDetail> GetAllDetail()
         {
             using (UniAppContext univercityContext = new UniAppContext())

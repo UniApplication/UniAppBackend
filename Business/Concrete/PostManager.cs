@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using CORE.Utilities;
 using DataAccess.Abstract;
@@ -17,17 +18,21 @@ namespace Business.Concrete
         {
             _postDal = postDal;
         }
+        [SecuredOperation("univercity")]
         public IResult Add(Post entity)
         {
             _postDal.Add(entity);
             return new SuccessResult(Messages.Postadded);
         }
 
+        [SecuredOperation("admin,univercity")]
         public IResult Delete(Post entity)
         {
             _postDal.Delete(entity);
             return new SuccessResult(Messages.PostDeleted);
         }
+
+
 
         public IDataResult<List<Post>> GetAll()
         {
