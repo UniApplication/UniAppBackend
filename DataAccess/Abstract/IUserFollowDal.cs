@@ -8,5 +8,6 @@ namespace DataAccess.Abstract
 {
     public interface IUserFollowDal: IEntityRepository<UserFollow>
     {
+        bool checkIfUserFollowing(UserFollow userFollows);
     }
 }

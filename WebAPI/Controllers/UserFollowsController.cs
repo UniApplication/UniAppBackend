@@ -38,6 +38,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpPost("checkifuserfollows")]
+        public IActionResult CheckIfUserFollowing(UserFollow userFollow)
+        {
+            var result = _userfollowService.checkIfUserFollowing(userFollow);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("add")]
         public IActionResult Add(UserFollow userFollow)
         {

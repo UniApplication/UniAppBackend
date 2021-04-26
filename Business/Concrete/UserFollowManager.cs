@@ -22,6 +22,14 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Userfollowadded);
         }
 
+        public IDataResult<bool> checkIfUserFollowing(UserFollow userFollow)
+        {
+            
+            return new SuccessDataResult<bool>(_userfollowDal.checkIfUserFollowing(userFollow),"Kullanıcı Takip ediyor.");
+            
+           
+        }
+
         public IResult Delete(UserFollow entity)
         {
             _userfollowDal.Delete(entity);
