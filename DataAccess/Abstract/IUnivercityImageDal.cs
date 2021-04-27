@@ -8,5 +8,6 @@ namespace DataAccess.Abstract
 {
    public interface IUnivercityImageDal: IEntityRepository<UnivercityImage>
     {
+        bool checkIfImageExist(int uniId);
     }
 }

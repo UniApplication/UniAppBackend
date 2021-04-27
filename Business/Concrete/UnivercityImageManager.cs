@@ -16,6 +16,7 @@ namespace Business.Concrete
     {
 
         IUnivercityImageDal _univercityImageDal;
+
         public UnivercityImageManager(IUnivercityImageDal univercityImageDal)
         {
             _univercityImageDal = univercityImageDal;
@@ -40,9 +41,9 @@ namespace Business.Concrete
 
             return new SuccessDataResult<List<UnivercityImage>>(_univercityImageDal.GetAll(), "Hepsi geldi");
         }
-        public IDataResult<List<UnivercityImage>> GetByUnivercityId(int univercityId)
+        public IDataResult<UnivercityImage> GetByUnivercityId(int univercityId)
         {
-            return new SuccessDataResult<List<UnivercityImage>>(_univercityImageDal.GetAll(p => p.UnivercityId==univercityId), "Unilerin Resimleri Getirildi");
+            return new SuccessDataResult<UnivercityImage>(_univercityImageDal.Get(p => p.UnivercityId==univercityId), "Unilerin Resimleri Getirildi");
         }
 
         private IResult CheckIfUnivercityHaveMoreThan1Images(int image)

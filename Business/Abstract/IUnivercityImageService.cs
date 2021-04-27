@@ -11,6 +11,6 @@ namespace Business.Abstract
     {
         IResult Add(IFormFile file, UnivercityImage univercityImage);
         IDataResult<List<UnivercityImage>> GetAll();
-        IDataResult<List<UnivercityImage>> GetByUnivercityId(int univercityId);
+        IDataResult<UnivercityImage> GetByUnivercityId(int univercityId);
     }
 }
