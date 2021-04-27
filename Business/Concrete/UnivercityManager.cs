@@ -39,6 +39,13 @@ namespace Business.Concrete
         [SecuredOperation("admin")]
         public IResult Delete(Univercity entity)
         {
+            IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
+            var result = univercityImageDal.checkIfImageExist(entity.Id);
+            if (result)
+            {
+                var image = univercityImageDal.Get(u=>u.UnivercityId==entity.Id);
+                univercityImageDal.Delete(image);
+            }
             _univercityDal.Delete(entity);
             return new SuccessResult(Messages.UnivercityDeleted);
         }
