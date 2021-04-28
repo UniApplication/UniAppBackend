@@ -52,21 +52,21 @@ namespace Business.Concrete
 
         public IDataResult<List<Univercity>> GetAll()
         {
-           //List<Univercity> univercities= _univercityDal.GetAll();
-           //foreach(var uni in univercities)
-           // {
-           //     IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
-           //     var result = univercityImageDal.checkIfImageExist(uni.Id);
-           //     if (!result)
-           //     {
-           //       UnivercityImage newUniImage= new UnivercityImage
-           //         {
-           //             UnivercityId=uni.Id,
-           //             ImagePath="default.jpg"
-           //         };
-           //         univercityImageDal.Add(newUniImage);
-           //     }
-           // }
+            //List<Univercity> univercities = _univercityDal.GetAll();
+            //foreach (var uni in univercities)
+            //{
+            //    IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
+            //    var result = univercityImageDal.checkIfImageExist(uni.Id);
+            //    if (!result)
+            //    {
+            //        UnivercityImage newUniImage = new UnivercityImage
+            //        {
+            //            UnivercityId = uni.Id,
+            //            ImagePath = "default.jpg"
+            //        };
+            //        univercityImageDal.Add(newUniImage);
+            //    }
+            //}
             return new SuccessDataResult<List<Univercity>>(_univercityDal.GetAll(), Messages.UnivercitysListed);
         }
 

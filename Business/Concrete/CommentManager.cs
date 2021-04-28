@@ -5,6 +5,7 @@ using CORE.Aspects.Autofac.Validation;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -42,9 +43,9 @@ namespace Business.Concrete
             return new SuccessDataResult<Comment>(_commentDal.Get(c=>c.Id==Id),Messages.CommentGetted);
         }
 
-        public IDataResult<List<Comment>> GetCommentByUnivercityId(int univercityId)
+        public IDataResult<List<CommentDetailDto>> GetCommentByUnivercityId(int univercityId)
         {
-            return new SuccessDataResult<List<Comment>>(_commentDal.GetAll(c => c.UnivercityId == univercityId), Messages.CommentGetted);        }
+            return new SuccessDataResult<List<CommentDetailDto>>(_commentDal.GetAllDetailById(univercityId), Messages.CommentGetted);        }
 
         public IResult Update(Comment entity)
         {
