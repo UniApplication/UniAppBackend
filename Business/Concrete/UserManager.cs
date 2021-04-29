@@ -7,6 +7,7 @@ using CORE.Entities.Concrete;
 using CORE.Utilities;
 using CORE.Utilities.BusinessRules;
 using DataAccess.Abstract;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,13 @@ namespace Business.Concrete
             userDal.AddClaim(user);
             return new SuccessResult(Messages.UserClaimUpdated);
         }
+        //[SecuredOperation("admin")]
+        public IResult DeleteClaim(UserOperationClaim user)
+        {
+           
+            userDal.DeleteClaim(user);
+            return new SuccessResult(Messages.UserClaimUpdated);
+        }
 
         public IResult Update(User entity)
         {
@@ -91,6 +99,10 @@ namespace Business.Concrete
             }
             
         }
-       
+
+        public IDataResult<List<UserOperationClaimsDto>> GetClaimsByUserId(int userId)
+        {
+            return new SuccessDataResult<List<UserOperationClaimsDto>>(userDal.GetClaimsByUserId(userId));
+        }
     }
 }

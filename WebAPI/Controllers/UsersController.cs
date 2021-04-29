@@ -48,10 +48,30 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getclaimsbyuserid")]
+        public IActionResult GetClaimsByUserId(int userId)
+        {
+            var result = _userService.GetClaimsByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpPost("postclaim")]
-        public IActionResult GetClaims(UserOperationClaim user)
+        public IActionResult PostClaim(UserOperationClaim user)
         {
             var result = _userService.PostClaim(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+        [HttpPost("deleteclaim")]
+        public IActionResult DeleteClaim(UserOperationClaim user)
+        {
+            var result = _userService.DeleteClaim(user);
             if (result.Success)
             {
                 return Ok(result);

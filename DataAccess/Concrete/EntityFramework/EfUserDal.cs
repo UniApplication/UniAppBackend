@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
+using Entity.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -21,6 +23,18 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+        public void DeleteClaim(UserOperationClaim user)
+        {
+            var userClaim = GetClaimById(u=>u.Id==user.Id);
+          
+            using (var context = new UniAppContext())
+            {
+                var deleteClaim = context.Entry(user);
+                deleteClaim.State = EntityState.Deleted;
+                context.SaveChanges();
+            }
+        }
+
         public List<OperationClaim> GetAllClaims()
         {
                 using (var context = new UniAppContext())
@@ -30,7 +44,15 @@ namespace DataAccess.Concrete.EntityFramework
                 }
            
         }
-
+        public UserOperationClaim GetClaimById(Expression<Func<UserOperationClaim, bool>> Id)
+        {
+            
+                using (var context = new UniAppContext())
+                {
+                    return context.Set<UserOperationClaim>().SingleOrDefault(Id);
+                }
+            
+        }
         public List<OperationClaim> GetClaims(int userId)
         {
             using (var context = new UniAppContext())
@@ -44,5 +66,17 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
+        public List<UserOperationClaimsDto> GetClaimsByUserId(int userId)
+        {
+            using (var context = new UniAppContext())
+            {
+                var result = from userOperationClaim in context.UserOperationClaims
+                             join operationClaim in context.OperationClaims
+                             on userOperationClaim.OperationClaimId equals operationClaim.Id
+                             where userOperationClaim.UserId == userId
+                             select new UserOperationClaimsDto() { Id=userOperationClaim.Id,claimName=operationClaim.Name,userId=userOperationClaim.UserId };
+                return result.ToList();
+            }
+        }
     }
 }

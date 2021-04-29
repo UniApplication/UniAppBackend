@@ -25,6 +25,8 @@ namespace Business.Concrete
         {
                 IResult result = BusinessRules.Run(CheckIfUnivercityHaveMoreThan1Images(univercityImage.UnivercityId));
 
+                //Default jpg var mı ?
+                //hemen sil
                 if (result != null)
                 {
                     return result;
