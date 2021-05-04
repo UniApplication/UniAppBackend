@@ -3,6 +3,7 @@ using Business.Constants;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
+using Entity.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,13 +23,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Userfollowadded);
         }
 
-        public IDataResult<bool> checkIfUserFollowing(UserFollow userFollow)
+        public IDataResult<UserFollowModelDto> getUserFollowing(UserFollow userFollow)
         {
-            
-            return new SuccessDataResult<bool>(_userfollowDal.checkIfUserFollowing(userFollow),"Kullanıcı Takip ediyor.");
+          
+            return new SuccessDataResult<UserFollowModelDto>(_userfollowDal.getFollow(userFollow),"Kullanıcı Takip ediyor.");
             
            
-        }
+        } 
 
         public IResult Delete(UserFollow entity)
         {
@@ -50,6 +51,12 @@ namespace Business.Concrete
         {
             _userfollowDal.Update(entity);
             return new SuccessResult(Messages.UserFollowUpdated);
+        }
+
+        public IDataResult<List<UsersFollowingUnivercities>> getUsersFollowingUnivercities(int userId)
+        {
+            return new SuccessDataResult<List<UsersFollowingUnivercities>>(_userfollowDal.getFollowingUnivercities(userId),Messages.UsersFollowingUnivercitiesGetted);
+           
         }
     }
 }

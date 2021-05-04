@@ -28,6 +28,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+        [HttpGet("getusersfollowingunivercities")]
+        public IActionResult GetUsersFollowingUnivercities(int userId)
+        {
+            var result = _userfollowService.getUsersFollowingUnivercities(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int Id)
         {
@@ -41,14 +51,14 @@ namespace WebAPI.Controllers
         [HttpPost("checkifuserfollows")]
         public IActionResult CheckIfUserFollowing(UserFollow userFollow)
         {
-            var result = _userfollowService.checkIfUserFollowing(userFollow);
+            var result = _userfollowService.getUserFollowing(userFollow);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("add")]
+        [HttpPost("add")]
         public IActionResult Add(UserFollow userFollow)
         {
             var result = _userfollowService.Add(userFollow);
@@ -58,7 +68,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("update")]
+        [HttpPost("update")]
         public IActionResult Update(UserFollow userFollow)
         {
             var result = _userfollowService.Update(userFollow);
@@ -68,7 +78,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
-        [HttpGet("delete")]
+        [HttpPost("delete")]
         public IActionResult Delete(UserFollow userFollow)
         {
             var result = _userfollowService.Delete(userFollow);

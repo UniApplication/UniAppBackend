@@ -61,6 +61,6 @@ namespace Business.Constants
         public static string UserFollowsListed = "Takip Edilenler Listelendi";
         public static string UserFollowGetted = "Takip Getirildi";
 
-       
+        public static string UsersFollowingUnivercitiesGetted = "Kullanıcının Takip ettiği üniversiteler getirildi";
     }
 }

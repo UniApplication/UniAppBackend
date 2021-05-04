@@ -23,6 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on
                              c.UnivercityId equals uni.Id
                              where c.UnivercityId == univercityId
+                             orderby c.Id descending
                              select new CommentDetailDto
                              {
                                  Id = c.Id,
