@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using CORE.Aspects.Autofac.Caching;
 using CORE.Aspects.Autofac.Validation;
 using CORE.Utilities;
 using DataAccess.Abstract;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _commentDal = commentDal;
         }
         [ValidationAspect(typeof(CommentValidator))]
+        [CacheRemoveAspect("ICommentService.Get")]
         public IResult Add(Comment entity)
         {
             _commentDal.Add(entity);
@@ -43,6 +45,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Comment>(_commentDal.Get(c=>c.Id==Id),Messages.CommentGetted);
         }
 
+        [CacheAspect]
         public IDataResult<List<CommentDetailDto>> GetCommentByUnivercityId(int univercityId)
         {
             return new SuccessDataResult<List<CommentDetailDto>>(_commentDal.GetAllDetailById(univercityId), Messages.CommentGetted);        }

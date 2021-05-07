@@ -22,11 +22,13 @@ namespace Business.Concrete
             _univercityImageDal = univercityImageDal;
         }
         public IResult Add(IFormFile file,UnivercityImage univercityImage)
-        {
-                IResult result = BusinessRules.Run(CheckIfUnivercityHaveMoreThan1Images(univercityImage.UnivercityId));
 
-                //Default jpg var mı ?
-                //hemen sil
+        {
+
+                IResult result = BusinessRules.Run(CheckIfUnivercityHaveMoreThan1Images(univercityImage.UnivercityId),
+                    DeleteIfUnivercityHaveImage(univercityImage.UnivercityId));
+
+
                 if (result != null)
                 {
                     return result;
@@ -57,6 +59,19 @@ namespace Business.Concrete
         }
         return new SuccessResult();
          }
+
+        private IResult DeleteIfUnivercityHaveImage(int univercityId)
+        {
+            var resultImage = _univercityImageDal.Get(u => u.UnivercityId == univercityId);
+            if (resultImage != null)
+            {
+
+                _univercityImageDal.Delete(resultImage);
+
+            }
+            return new SuccessResult("Default resim silindi");
+           
+        }
     }
    
 }

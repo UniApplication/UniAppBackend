@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using CORE.Aspects.Autofac.Caching;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using Entity.Concrete;
@@ -19,6 +20,7 @@ namespace Business.Concrete
             _postDal = postDal;
         }
         [SecuredOperation("univercity")]
+        [CacheRemoveAspect("IPostService.Get")]
         public IResult Add(Post entity)
         {
             _postDal.Add(entity);
@@ -26,6 +28,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin,univercity")]
+        [CacheRemoveAspect("IPostService.Get")]
         public IResult Delete(Post entity)
         {
             _postDal.Delete(entity);
@@ -39,6 +42,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Post>>(_postDal.GetAll(), Messages.PostsListed);
         }
 
+        [CacheAspect]
         public IDataResult<List<PostDetail>> GetAllDetail()
         {
             return new SuccessDataResult<List<PostDetail>>(_postDal.GetAllDetail(), Messages.PostsListed);

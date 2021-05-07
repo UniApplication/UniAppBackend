@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using CORE.Aspects.Autofac.Caching;
 using CORE.Utilities;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _univercityDal = univercityDal;
         }
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("IUnivercityService.Get")]
         public IResult Add(Univercity entity)
         {
             _univercityDal.Add(entity);
@@ -37,6 +39,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Univercityadded);
         }
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("IUnivercityService.Get")]
         public IResult Delete(Univercity entity)
         {
             IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
@@ -49,7 +52,7 @@ namespace Business.Concrete
             _univercityDal.Delete(entity);
             return new SuccessResult(Messages.UnivercityDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Univercity>> GetAll()
         {
             //List<Univercity> univercities = _univercityDal.GetAll();
@@ -70,16 +73,18 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Univercity>>(_univercityDal.GetAll(), Messages.UnivercitysListed);
         }
 
+        [CacheAspect]
         public IDataResult<List<UnivercityDetailDto>> GetAllDetail()
         {
             return new SuccessDataResult<List<UnivercityDetailDto>>(_univercityDal.GetAllDetails(), Messages.UnivercityGetted);
         }
-
+        [CacheAspect]
         public IDataResult<Univercity> GetById(int Id)
         {
             return new SuccessDataResult<Univercity>(_univercityDal.Get(u=>u.Id==Id), Messages.UnivercityGetted);
         }
 
+        [CacheAspect]
         public IDataResult<List<UnivercityDetailDto>> GetDetailByCity(int cityId)
         {
             return new SuccessDataResult<List<UnivercityDetailDto>>(_univercityDal.GetDetailByCityId(cityId),Messages.UnivercitysListed);
@@ -90,6 +95,7 @@ namespace Business.Concrete
             return new SuccessDataResult<UnivercityDetailDto>(_univercityDal.GetDetailById(uniId), Messages.UnivercityGetted);
         }
         [SecuredOperation("admin")]
+        [CacheRemoveAspect("IUnivercityService.Get")]
         public IResult Update(Univercity entity)
         {
             _univercityDal.Update(entity);
