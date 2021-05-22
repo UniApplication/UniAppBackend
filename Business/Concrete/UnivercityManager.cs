@@ -55,21 +55,7 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Univercity>> GetAll()
         {
-            //List<Univercity> univercities = _univercityDal.GetAll();
-            //foreach (var uni in univercities)
-            //{
-            //    IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
-            //    var result = univercityImageDal.checkIfImageExist(uni.Id);
-            //    if (!result)
-            //    {
-            //        UnivercityImage newUniImage = new UnivercityImage
-            //        {
-            //            UnivercityId = uni.Id,
-            //            ImagePath = "default.jpg"
-            //        };
-            //        univercityImageDal.Add(newUniImage);
-            //    }
-            //}
+
             return new SuccessDataResult<List<Univercity>>(_univercityDal.GetAll(), Messages.UnivercitysListed);
         }
 
@@ -103,3 +89,70 @@ namespace Business.Concrete
         }
     }
 }
+//Bu kısımda önceden eklenmiş verilerin Null değerleri varsa değiştiriliyor
+//List<Univercity> univercities = _univercityDal.GetAll();
+
+//foreach (var uni in univercities)
+//{
+
+//    if (uni.StarCount == null)
+//    {
+//        Random rnd = new Random();
+//        int dice = rnd.Next(1, 10);
+//        Univercity univercityExpand1 = new Univercity
+//        {
+//            Id = uni.Id,
+//            CityId = uni.CityId,
+//            UnivercityDescription = uni.UnivercityDescription,
+//            UnivercityName = uni.UnivercityName,
+//            UnivercityRector = uni.UnivercityRector,
+//            StarCount = dice
+//        };
+//        _univercityDal.Update(univercityExpand1);
+//    }
+//    if (uni.UnivercityDescription == null)
+//    {
+
+
+//        Univercity univercityExpand2 = new Univercity
+//        {
+//            Id = uni.Id,
+//            CityId = uni.CityId,
+//            UnivercityDescription =uni.UnivercityName+ " Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+//            " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud " +
+//            " Excepteur sint occaecat cupidatat non proident, sunt " ,
+
+//            UnivercityName = uni.UnivercityName,
+//            UnivercityRector = uni.UnivercityRector,
+//            StarCount = uni.StarCount
+//        };
+//        _univercityDal.Update(univercityExpand2);
+//    }
+//    if (uni.UnivercityRector == null)
+//    {
+
+
+//        Univercity univercityExpand = new Univercity
+//        {
+//            Id = uni.Id,
+//            CityId = uni.CityId,
+//            UnivercityDescription = uni.UnivercityDescription,
+//            UnivercityName = uni.UnivercityName,
+//            UnivercityRector = uni.UnivercityName+ " Rektörü",
+//            StarCount = uni.StarCount
+//        };
+//        _univercityDal.Update(univercityExpand);
+//    }
+
+//}
+//IUnivercityImageDal univercityImageDal = new EfUnivercityImageDal();
+//var result = univercityImageDal.checkIfImageExist(uni.Id);
+//if (!result)
+//{
+//    UnivercityImage newUniImage = new UnivercityImage
+//    {
+//        UnivercityId = uni.Id,
+//        ImagePath = "default.jpg"
+//    };
+//    univercityImageDal.Add(newUniImage);
+//}
