@@ -9,6 +9,7 @@ namespace Entity.DTOs
     {
         public int Id { get; set; }
         public string UniName { get; set; }
+        public int UniId { get; set; }
         public string UniPost { get; set; }
     }
 }
