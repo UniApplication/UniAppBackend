@@ -10,7 +10,10 @@ namespace Business.ValidationRules.FluentValidation
     {
         public RegisterValidator()
         {
-            RuleFor(u => u.Email).EmailAddress();
+            RuleFor(s => s.Email).NotEmpty().WithMessage("E-posta adresi gereklidir.");
+            RuleFor(U => U.Email).EmailAddress();
+
+
             RuleFor(u => u.Password).MinimumLength(6);
         }
     }

@@ -15,7 +15,7 @@ namespace Business.Constants
         public static string UserGot = "Kullanıcı Getirildi";
         public static string UsersGetted = "Kullanıcılar Listelendi";
         public static string PasswordError = "Şifre Hatalı";
-        public static string SuccesfulLogin = "Sisteme Giriş başarılı";
+        public static string SuccesfulLogin = "Başarılı İşlem";
         public static string UserAlreadyExists = "Bu kullanıcı zaten Mevcut";
         public static string UserRegistered = "Kullanıcı Başarıyla Kaydedildi";
         public static string AccessTokenCreated = "Token Oluşturuldu";
