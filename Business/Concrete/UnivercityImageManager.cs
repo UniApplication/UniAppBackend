@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using CORE.Aspects.Autofac.Caching;
 using CORE.Utilities;
 using CORE.Utilities.BusinessRules;
 using CORE.Utilities.FileHelper;
@@ -21,6 +22,7 @@ namespace Business.Concrete
         {
             _univercityImageDal = univercityImageDal;
         }
+        [CacheRemoveAspect("IUnivercityService.Get")]
         public IResult Add(IFormFile file,UnivercityImage univercityImage)
 
         {
